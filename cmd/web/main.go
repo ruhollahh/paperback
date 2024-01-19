@@ -50,7 +50,7 @@ func main() {
 		AddSource: true,
 	}))
 
-	db, err := service.OpenDB(cfg)
+	db, err := service.OpenDB(cfg.Db)
 	if err != nil {
 		logger.Error(err.Error())
 		os.Exit(1)

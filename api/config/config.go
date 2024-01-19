@@ -1,18 +1,15 @@
 package config
 
-import "time"
+import (
+	"github.com/ruhollahh/paperback/internal/app/service"
+)
 
 const Version = "1.0.0"
 
 type Config struct {
-	Port int
-	Env  string
-	Db   struct {
-		Dsn          string
-		MaxOpenConns int
-		MaxIdleConns int
-		MaxIdleTime  time.Duration
-	}
+	Port    int
+	Env     string
+	Db      service.DBConfig
 	Limiter struct {
 		Rps     float64
 		Burst   int

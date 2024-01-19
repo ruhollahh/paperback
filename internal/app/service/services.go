@@ -6,7 +6,6 @@ import (
 	"time"
 
 	_ "github.com/lib/pq"
-	"github.com/ruhollahh/paperback/api/config"
 )
 
 type Services struct {
@@ -25,17 +24,24 @@ func NewServices(db *sql.DB) Services {
 	}
 }
 
-func OpenDB(cfg config.Config) (*sql.DB, error) {
-	db, err := sql.Open("postgres", cfg.Db.Dsn)
+type DBConfig struct {
+	Dsn          string
+	MaxOpenConns int
+	MaxIdleConns int
+	MaxIdleTime  time.Duration
+}
+
+func OpenDB(cfg DBConfig) (*sql.DB, error) {
+	db, err := sql.Open("postgres", cfg.Dsn)
 	if err != nil {
 		return nil, err
 	}
 
-	db.SetMaxOpenConns(cfg.Db.MaxOpenConns)
+	db.SetMaxOpenConns(cfg.MaxOpenConns)
 
-	db.SetMaxIdleConns(cfg.Db.MaxIdleConns)
+	db.SetMaxIdleConns(cfg.MaxIdleConns)
 
-	db.SetConnMaxIdleTime(cfg.Db.MaxIdleTime)
+	db.SetConnMaxIdleTime(cfg.MaxIdleTime)
 
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()

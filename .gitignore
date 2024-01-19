@@ -1,0 +1,6 @@
+tls/
+/tmp
+/web/views/*.go
+/.idea
+node_modules/
+/web/static/styles

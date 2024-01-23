@@ -35,12 +35,12 @@ func (a *API) routes() http.Handler {
 	fileServer := http.FileServer(http.Dir("./web/static/"))
 	router.Handler(http.MethodGet, "/static/*filepath", http.StripPrefix("/static", fileServer))
 
-	// dynamic := alice.New(a.SessionManager.LoadAndSave, middleware.CSRF, middleware.Authenticate)
+	dynamic := alice.New(a.SessionManager.LoadAndSave, middleware.CSRF, middleware.Authenticate)
 	// protected := dynamic.Append(app.requireAuth)
 
 	router.HandlerFunc(http.MethodGet, "/healthcheck", handler.HealthCheck)
 
-	// router.Handler(http.MethodGet, "/", dynamic.ThenFunc(handler.Home))
+	router.Handler(http.MethodGet, "/", dynamic.ThenFunc(handler.Home))
 
 	router.NotFound = http.HandlerFunc(handler.NotFound)
 

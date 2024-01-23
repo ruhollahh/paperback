@@ -1,132 +1,20 @@
-package view
+package pages
 
-import "github.com/ruhollahh/paperback/internal/app/domain"
+import "github.com/ruhollahh/paperback/web/views/components"
 
-type HomeViewModel struct {
-	products []domain.Product
-}
-
-templ Home(model HomeViewModel) {
+templ Home() {
 	<html lang="fa">
 		<head>
 			<title>پیپربک</title>
 			<meta charset="UTF-8"/>
 			<meta name="viewport" content="width=device-width, initial-scale=1"/>
 			<link href="/static/styles/main.css" rel="stylesheet"/>
-			<script type="module" src="/static/app/main.js"></script>
+			<script type="module" src="/static/dist/main.js"></script>
 		</head>
 		<body>
-			<div class="flex flex-col min-h-screen">
-				<header class="flex h-16 items-center justify-between px-4 md:px-6">
-					<a class="flex items-center gap-2" href="#">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="24"
-							height="24"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							class="h-6 w-6"
-						>
-							<path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path>
-						</svg>
-						<span class="text-lg font-semibold">Book Store</span>
-					</a>
-					<div class="flex items-center gap-4">
-						<button class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10">
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="24"
-								height="24"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								class="h-5 w-5"
-							>
-								<circle cx="8" cy="21" r="1"></circle>
-								<circle cx="19" cy="21" r="1"></circle>
-								<path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
-							</svg>
-							<span class="sr-only">Shopping cart</span>
-							<div class="border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80 ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
-								0
-							</div>
-						</button>
-						<button class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
-							Login
-						</button>
-					</div>
-				</header>
-				<main class="flex-1 p-4 md:p-6">
-					<div id="content">
-						<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12,23a9.63,9.63,0,0,1-8-9.5,9.51,9.51,0,0,1,6.79-9.1A1.66,1.66,0,0,0,12,2.81h0a1.67,1.67,0,0,0-1.94-1.64A11,11,0,0,0,12,23Z"><animateTransform attributeName="transform" type="rotate" dur="0.75s" values="0 12 12;360 12 12" repeatCount="indefinite"></animateTransform></path></svg>
-					</div>
-					<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
-						<div class="relative group">
-							<a class="absolute inset-0 z-10" href="#">
-								<span class="sr-only">View</span>
-							</a>
-							<img
-								src="/static/images/placeholder.svg"
-								alt="Cover image"
-								width="200"
-								height="200"
-								class="rounded-lg object-cover w-full aspect-square group-hover:opacity-50 transition-opacity"
-							/>
-							<div class="flex-1 py-4">
-								<h3 class="font-semibold tracking-tight">Book Title</h3>
-								<p class="text-sm leading-none text-gray-500 dark:text-gray-400">Author Name</p>
-								<button class="inline-flex items-center justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-9 rounded-md px-3 mt-2">
-									Add to Cart
-								</button>
-							</div>
-						</div>
-						<div class="relative group">
-							<a class="absolute inset-0 z-10" href="#">
-								<span class="sr-only">View</span>
-							</a>
-							<img
-								src="/static/images/placeholder.svg"
-								alt="Cover image"
-								width="200"
-								height="200"
-								class="rounded-lg object-cover w-full aspect-square group-hover:opacity-50 transition-opacity"
-							/>
-							<div class="flex-1 py-4">
-								<h3 class="font-semibold tracking-tight">Book Title</h3>
-								<p class="text-sm leading-none text-gray-500 dark:text-gray-400">Author Name</p>
-								<button class="inline-flex items-center justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-9 rounded-md px-3 mt-2">
-									Add to Cart
-								</button>
-							</div>
-						</div>
-						<div class="relative group">
-							<a class="absolute inset-0 z-10" href="#">
-								<span class="sr-only">View</span>
-							</a>
-							<img
-								src="/static/images/placeholder.svg"
-								alt="Cover image"
-								width="200"
-								height="200"
-								class="rounded-lg object-cover w-full aspect-square group-hover:opacity-50 transition-opacity"
-							/>
-							<div class="flex-1 py-4">
-								<h3 class="font-semibold tracking-tight">Book Title</h3>
-								<p class="text-sm leading-none text-gray-500 dark:text-gray-400">Author Name</p>
-								<button class="inline-flex items-center justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-9 rounded-md px-3 mt-2">
-									Add to Cart
-								</button>
-							</div>
-						</div>
-					</section>
-				</main>
+			<div>
+				@components.Cart()
+				@components.Other()
 			</div>
 		</body>
 	</html>
